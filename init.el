@@ -60,6 +60,7 @@
 								yascroll
 								websocket
 								smartparens
+								fringe-helper
 								))
 
 (el-get-bundle AnthonyDiGirolamo/airline-themes
@@ -67,6 +68,8 @@
 (el-get-bundle flycheck/flycheck
 	(add-hook 'after-init-hook #'global-flycheck-mode))
 (el-get-bundle purcell/whitespace-cleanup-mode)
+(el-get-bundle nonsequitur/git-gutter-fringe-plus)
+(el-get-bundle nonsequitur/git-gutter-plus)
 
 ;;; User Interface
 (setq frame-background-mode 'dark)
@@ -89,11 +92,16 @@
 (setq ring-bell-function 'ignore)
 
 (defadvice relative-line-numbers-default-format ( around current-line (arg) activate)
+
 	"If offset is 0 then return current line"
 	(if (= arg 0)
 			(ad-set-arg 0 (line-number-at-pos)))
 	ad-do-it)
 (global-relative-line-numbers-mode)
+
+(require 'git-gutter-fringe+)
+(global-git-gutter+-mode)
+
 
 ;; Whitespace
 (setq show-trailing-whitespace t)
