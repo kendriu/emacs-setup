@@ -70,6 +70,7 @@
 (el-get-bundle purcell/whitespace-cleanup-mode)
 (el-get-bundle nonsequitur/git-gutter-fringe-plus)
 (el-get-bundle nonsequitur/git-gutter-plus)
+(el-get-bundle syohex/electric-operator)
 
 ;;; User Interface
 (setq frame-background-mode 'dark)
@@ -142,6 +143,7 @@
 ;; Tabs and spaces
 (setq-default tab-width 2)
 (setq indent-tabs-mode nil)
+(require 'electric-operator)
 
 (require 'flycheck)
 (setq-default flycheck-emacs-lisp-load-path 'inherit)
