@@ -41,30 +41,30 @@
 								aggressive-indent-mode
 								auto-complete
 								beacon
+								dired+
 								elpy
 								evil
 								evil-leader
 								evil-matchit
 								evil-nerd-commenter
 								evil-surround
+								fringe-helper
 								helm
-								dired+
-								markdown-mode
 								helm-projectile
 								magit
-								pony-mode
+								markdown-mode
 								neotree
+								org-mode
+								pony-mode
 								popup
 								powerline
 								projectile
 								rainbow-delimiters
 								relative-line-numbers
-								solarized-emacs
-								yascroll
-								websocket
 								smartparens
-								fringe-helper
-
+								solarized-emacs
+								websocket
+								yascroll
 								))
 
 (el-get-bundle AnthonyDiGirolamo/airline-themes
