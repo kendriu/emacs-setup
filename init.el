@@ -16,6 +16,9 @@
 (toggle-scroll-bar -1)
 (tool-bar-mode -1)
 
+(setq echo-keystrokes 0.1
+			use-dialog-box nil)
+
 ;; Fullscreen
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
