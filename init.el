@@ -1,12 +1,12 @@
-(require 'eshell)
- (defun set-exec-path-from-shell-PATH ()
-	 (let ((path-from-shell (replace-regexp-in-string
-													 "[ \t\n]*$"
-													 ""
-													 (shell-command-to-string "$SHELL --login -i -c 'echo $PATH'"))))
-		 (setenv "PATH" path-from-shell)
-		 (setq eshell-path-env path-from-shell) ; for eshell users
-		 (setq exec-path (split-string path-from-shell path-separator))))
+(require eshell)
+(defun set-exec-path-from-shell-PATH ()
+	(let ((path-from-shell (replace-regexp-in-string
+													"[ \t\n]*$"
+													""
+													(shell-command-to-string "$SHELL --login -i -c 'echo $PATH'"))))
+		(setenv "PATH" path-from-shell)
+		(setq eshell-path-env path-from-shell) ; for eshell users
+		(setq exec-path (split-string path-from-shell path-separator))))
 
 (when window-system (set-exec-path-from-shell-PATH))
 (package-initialize)
@@ -86,7 +86,7 @@
 ;; C-x C-j opens dired with the cursor right on the file you're editing
 (require 'dired-x)
 
-
+(defalias 'yes-or-no-p 'y-or-n-p)
 
 ;; No blinking cursor
 (blink-cursor-mode -1)
