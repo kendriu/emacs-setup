@@ -1,4 +1,4 @@
-(require eshell)
+(require 'eshell)
 (defun set-exec-path-from-shell-PATH ()
 	(let ((path-from-shell (replace-regexp-in-string
 													"[ \t\n]*$"
@@ -64,6 +64,7 @@
 								websocket
 								smartparens
 								fringe-helper
+
 								))
 
 (el-get-bundle AnthonyDiGirolamo/airline-themes
@@ -84,7 +85,6 @@
 		(load-theme 'airline-molokai))
 (require 'yascroll)
 (global-yascroll-bar-mode 1)
-(cua-mode)
 (global-auto-revert-mode 1)
 ;; C-x C-j opens dired with the cursor right on the file you're editing
 (require 'dired-x)
@@ -207,16 +207,16 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (global-set-key [escape] 'evil-exit-emacs-state)
 
 ;;; Shortcuts
-;; helm
 ;; under mac, have Command as Meta and keep Option for localized input
 (when (string-match "apple-darwin" system-configuration)
 	(setq mac-allow-anti-aliasing t)
 	(setq mac-command-modifier 'meta)
 	(setq mac-option-modifier 'none))
+
+;; helm
 (global-set-key (kbd "M-x") 'helm-M-x)
 (require 'evil-nerd-commenter)
 (evilnc-default-hotkeys)
-;; (define-key helm-read-file-map (kbd "TAB") 'helm-execute-persistent-action)
 (evil-leader/set-key
 	"m" 'helm-recentf
 	"f" 'helm-find-files
