@@ -210,7 +210,9 @@
 				(evil-leader/set-key
 					"m" 'helm-recentf
 					"f" 'helm-find-files
+					"d" 'helm-projectile-find-file
 					"b" 'helm-buffers-list
+					"g" 'elpy-goto-definition
 					))
 		#+END_SRC
 *** Snippets
@@ -236,6 +238,7 @@
 				(add-hook 'after-init-hook #'global-flycheck-mode)
 				;; flycheck looks for libraries in load-path variable
 				(setq-default flycheck-emacs-lisp-load-path 'inherit)
+				(setq-default flycheck-flake8-maximum-line-length 99)
 				)
 		#+END_SRC
 *** Aggressive indent
@@ -282,9 +285,15 @@
 					`(("." . ,(expand-file-name
 										 (concat user-emacs-directory "backups")))))
 
+		;; As well as auto-save files
+		(setq auto-save-file-name-transforms
+					`((".*" "~/.emacs.d/backups" t)))
+					
+
 		;; Make backups of files, even when they're in version control
 		(setq vc-make-backup-files t)
 	#+END_SRC
+
 *** TODO  Cursor in the same place in new session
 		(Marked for TODO because I'm not sure if this works)
 		If I open same file as before I wan't emacs to place cursor in place of before edition
@@ -314,6 +323,12 @@
 			(define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
 			(global-set-key [escape] 'evil-exit-emacs-state)
 		#+END_SRC
+*** Change window with Shift-<arrow>
+		It is definitly more convienient to use Shift-<arrow> to navigate between windows
+	#+BEGIN_SRC emacs-lisp
+    (windmove-default-keybindings)
+    (setq windmove-wrap-around t)
+	#+END_SRC	
 ** Navigation
 *** Helm
 	 Helm is great way to find something on a list. On any list.
@@ -387,6 +402,7 @@
 		 (use-package elpy
 			 :ensure t
 			 :config
+			 (remove-hook 'elpy-modules 'elpy-module-flymake)
 			 (elpy-enable))
 	 #+END_SRC
 
@@ -395,6 +411,14 @@
 		 (use-package pony-mode
 			 :ensure t)
 	 #+END_SRC
+** Testing
+*** Testing rest app
+		REST API shold be tested from inside emacs
+		#+BEGIN_SRC emacs-lisp
+			(use-package restclient
+				:ensure t
+				)
+		#+END_SRC
 ** Org-mode
 	 Org-mode is installed in init.el.
 	 Furthermore it has to installed manually with "Install-package" command.
