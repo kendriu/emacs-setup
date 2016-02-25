@@ -1,0 +1,14 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: graphql request
+# key: graphql
+# binding: direct-keybinding
+# --
+app.post_json(
+		'/graphql',
+		{
+				'query': '${1:query}'
+		},
+		auth_type='jwt',
+		auth=token
+)
+$0
