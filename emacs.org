@@ -208,11 +208,12 @@
 				:config
 				(global-evil-leader-mode)
 				(evil-leader/set-key
-					"m" 'helm-recentf
-					"f" 'helm-find-files
-					"d" 'helm-projectile-find-file
 					"b" 'helm-buffers-list
+					"d" 'helm-projectile-find-file
+					"f" 'helm-find-files
 					"g" 'elpy-goto-definition
+					"m" 'helm-recentf
+					"s" 'helm-projectile-grep
 					))
 		#+END_SRC
 *** Snippets
