@@ -148,15 +148,26 @@
 *** Markdown
 		Turns out that markdown-mode is not build in emacs
 		#+BEGIN_SRC emacs-lisp
-			(use-package markdown-mode
-				:ensure t
-				:config
-				(autoload 'markdown-mode "markdown-mode"
-					"Major mode for editing Markdown files" t)
-				;; Assign file extension to markdown mode
-				(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
-				(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-				(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode)))
+      (use-package markdown-mode
+        :ensure t
+        :config
+        (autoload 'markdown-mode "markdown-mode"
+          "Major mode for editing Markdown files" t)
+        ;; Assign file extension to markdown mode
+        (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+        (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+        (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode)))
+		#+END_SRC
+*** Yaml
+		Emacs does not support yaml files by default
+		#+BEGIN_SRC emacs-lisp
+      (use-package yaml-mode
+        :ensure t
+        :config
+        ;; Return key automatically indent cursor on new line
+        (add-hook 'yaml-mode-hook
+                  (lambda ()
+                  (define-key yaml-mode-map "\C-m" 'newline-and-indent))))
 		#+END_SRC
 *** Smartparens
 		When I open parenhesis it should be automatically closed, same goes for quotes
@@ -227,8 +238,9 @@
 *** Tabulators
 		Tabs should be 2 signs width and tabs shouldn't be use to indent lines
 		#+BEGIN_SRC emacs-lisp
+			(setq-default indent-tabs-mode nil)
 			(setq-default tab-width 2)
-			(setq indenqt-tabs-mode nil)
+      (defvaralias 'js-indent-level 'tab-width)
 		#+END_SRC
 *** Syntax check
 		Good thing that in emacs you can check syntax on the fly
@@ -412,6 +424,15 @@
 		 (use-package pony-mode
 			 :ensure t)
 	 #+END_SRC
+** Javascript
+# *** jsx
+# 	 #+BEGIN_SRC emacs-lisp
+# 		 (use-package jsx-mode
+# 			 :ensure t
+# 			 :config
+#        (add-to-list 'auto-mode-alist '("\\.jsx\\'" . jsx-mode))
+#        (autoload 'jsx-mode "jsx-mode" "JSX mode" t))
+# 	 #+END_SRC
 ** Testing
 *** Testing rest app
 		REST API shold be tested from inside emacs
